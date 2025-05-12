@@ -1,0 +1,64 @@
+FIRST IMPLEMENTATION
+ll n;
+    cin>> n;
+    vector< ll > v(n);
+    map< ll , ll > m;
+    for(int i=0; i<n; i++)
+    {
+        cin>> v[i];
+        m[v[i]]++;
+    }
+     if(m.size()==1)
+    {
+        ll g=(n*(n-1))/2;
+        cout<< 0 << " "<< g<< endl;
+
+        return 0;
+    }
+    auto  mn= min_element(v.begin(), v.end());
+    auto  mx=max_element(v.begin(), v.end());
+    cout<< *mx- *mn<< " "<< m[*mn]*m[*mx]<< endl;
+
+SECOND IMPLEMENTATION
+
+ll n;
+    cin>> n;
+    vector< ll > v(n);
+    for(int i=0; i<n; i++)
+    {
+        cin>> v[i];
+    }
+ 
+    srt(v);
+ 
+    ll mx=v[n-1]-v[0];
+ 
+    if(v[0]==v[n-1])
+    {
+        ll g=(n*(n-1))/2;
+        cout<< mx<< " "<< g<< endl;
+ 
+        return 0;
+    }
+ 
+    ll l=0, h=0;
+ 
+    for(int i=0; i<n; i++)
+    {
+        if(v[i]==v[0])
+            l++;
+        else
+            break;
+    }
+ 
+    for(int i=n-1; i>=0; i--)
+    {
+        if(v[i]==v[n-1])
+            h++;
+        else
+            break;
+    }
+ 
+    ll ways=l*h;
+ 
+    cout<< mx << " "<< ways<< endl;
